@@ -13,7 +13,7 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install packages
-RUN pnpm i --lockfile-only
+RUN --mount=type=cache,id=pnpm,target=/root/.local/share/pnpm/store pnpm install --frozen-lockfile
 
 # Copy local code to the container image.
 COPY . ./
