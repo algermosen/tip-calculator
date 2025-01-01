@@ -13,14 +13,14 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install packages
-RUN npm ci
+RUN pnpm i --lockfile-only
 
 # Copy local code to the container image.
 COPY . ./
 
 # Build the app.
-RUN npm run tailwind:build
-RUN npm run build
+RUN pnpm tailwind:build
+RUN pnpm build
 
 # Use the Caddy image
 FROM caddy
